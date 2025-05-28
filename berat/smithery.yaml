@@ -1,0 +1,38 @@
+# smithery.yaml — Smithery build & deploy konfigürasyonu
+# Doküman: https://smithery.ai/docs/config#smitheryyaml
+
+startCommand:
+  # stdio tipinde MCP (ya da Node) process'i başlatacağız
+  type: stdio
+
+# UI üzerinden veya CLI ile vereceğin env var’ları tanımlıyoruz
+configSchema:
+  type: object
+  required:
+    - openaiApiKey
+    - superApiKey
+  properties:
+    openaiApiKey:
+      type: string
+      description: OpenAI API key (örn. sk-…)
+    superApiKey:
+      type: string
+      description: Superhero API key (örn. 13b0660387f2d24f0618372fdab167aa)
+
+# Build ettiğimiz dist/index.js’i çalıştırırken env’ları inject eden fonksiyon
+commandFunction: | 
+  (config) => ({
+    command: "node",
+    args: ["dist/index.js"],
+    env: {
+      OPENAI_API_KEY: config.openaiApiKey,
+      SUPER_API_KEY: config.superApiKey,
+      # diğer varsa
+      NODE_ENV: "production"
+    }
+  })
+
+# Örnek olarak deploy öncesi UI’da gözükecek değerler
+exampleConfig:
+  openaiApiKey: "sk-xxxxxxxxxxxxxxxxxxxx"
+  superApiKey: "13b0660387f2d24f0618372fdab167aa"
