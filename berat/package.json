@@ -2,11 +2,14 @@
   "name": "berat",
   "version": "1.0.0",
   "main": "index.js",
+
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "mastra dev",
-    "build": "mastra build"
-  },
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "dev": "mastra dev",
+  "build": "mastra build",
+  "weather-forecast-mcp5": "npx -y @smithery/cli@latest run beratgungorsss/mobillllllllllll --key 7667465e-6c50-4cc1-bb3b-1cdbf6af5c9a --profile prospective-silkworm-1BCoGx"
+},
+
   "keywords": [],
   "author": "",
   "license": "ISC",
